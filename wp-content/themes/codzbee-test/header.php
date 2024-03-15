@@ -36,7 +36,7 @@
 						if ($codzbee_test_description || is_customize_preview()) :
 						?>
 							<p class="site-description text-light"><?php echo $codzbee_test_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
-																		?></p>
+																	?></p>
 						<?php endif; ?>
 					</div><!-- .col-lg-3 -->
 
@@ -53,7 +53,7 @@
 										'menu_id'        => 'primary-menu',
 										'container'      => 'div',
 										'container_id'   => 'navbarNav',
-										'container_class'=> 'collapse navbar-collapse',
+										'container_class' => 'collapse navbar-collapse',
 										'menu_class'     => 'navbar-nav',
 										'fallback_cb'    => '__return_false',
 										'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',

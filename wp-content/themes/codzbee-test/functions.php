@@ -176,6 +176,4 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
-require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php'; // If placed in theme folder
-// OR
-require_once plugin_dir_path( __FILE__ ) . 'class-wp-bootstrap-navwalker.php'; // If placed in plugin folder
+require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php'; 
