@@ -17,7 +17,7 @@
 .book-field input[type="text"],
 .book-field input[type="number"],
 .book-field select {
-    width: calc(100% - 20px); /* Adjust as needed */
+    width: calc(100% - 20px); 
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;

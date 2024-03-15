@@ -1,10 +1,15 @@
 <?php
-/*
-Plugin Name: Custom Book Plugin
-Description: Plugin to register custom post type "Books"
-*/
+/**
+ * Plugin Name: Custom Book Plugin
+ * Description: Plugin to register custom post type "Books"
+ */
 
 // Register Custom Post Type
+/**
+ * Register Custom Post Type for Books
+ *
+ * @return void
+ */
 function custom_book_post_type()
 {
     $labels = array(
@@ -67,6 +72,11 @@ function custom_book_post_type()
 add_action('init', 'custom_book_post_type', 0);
 
 // Add Metabox
+/**
+ * Add Meta Box for Book Details
+ *
+ * @return void
+ */
 function custom_book_metabox()
 {
     add_meta_box(
@@ -81,6 +91,12 @@ function custom_book_metabox()
 add_action('add_meta_boxes', 'custom_book_metabox');
 
 // Metabox Callback Function
+/**
+ * Callback function for Book Details Meta Box
+ *
+ * @param WP_Post $post Current post object
+ * @return void
+ */
 function custom_book_metabox_callback($post)
 {
     // Add nonce for security
@@ -97,27 +113,27 @@ function custom_book_metabox_callback($post)
     echo '<div class="book-field">';
     echo '<label for="book_genre">Genre</label>';
     echo '<select id="book_genre" name="book_genre">';
-    echo '<option value="fiction"' . selected($genre, 'fiction', false) . '>Fiction</option>';
-    echo '<option value="non-fiction"' . selected($genre, 'non-fiction', false) . '>Non-Fiction</option>';
-    echo '<option value="novel"' . selected($genre, 'novel', false) . '>Novel</option>';
-    echo '<option value="fairy-tale"' . selected($genre, 'fairy-tale', false) . '>Fairy tale</option>';
-    echo '<option value="other"' . selected($genre, 'other', false) . '>Other</option>';
+    echo '<option value="fiction"'. selected($genre, 'fiction', false). '>Fiction</option>';
+    echo '<option value="non-fiction"'. selected($genre, 'non-fiction', false). '>Non-Fiction</option>';
+    echo '<option value="novel"'. selected($genre, 'novel', false). '>Novel</option>';
+    echo '<option value="fairy-tale"'. selected($genre, 'fairy-tale', false). '>Fairy tale</option>';
+    echo '<option value="other"'. selected($genre, 'other', false). '>Other</option>';
     echo '</select>';
     echo '</div>'; // End of book-field
 
     echo '<div class="book-field">';
     echo '<label for="book_rating">Rating</label>';
-    echo '<input type="number" id="book_rating" name="book_rating" value="' . esc_attr($rating) . '" min="1" max="10">';
+    echo '<input type="number" id="book_rating" name="book_rating" value="'. esc_attr($rating). '" min="1" max="10">';
     echo '</div>'; // End of book-field
 
     echo '<div class="book-field">';
     echo '<label for="book_publication_year">Publication Year</label>';
-    echo '<input type="text" id="book_publication_year" name="book_publication_year" value="' . esc_attr($publication_year) . '">';
+    echo '<input type="text" id="book_publication_year" name="book_publication_year" value="'. esc_attr($publication_year). '">';
     echo '</div>'; // End of book-field
 
     echo '<div class="book-field">';
     echo '<label for="book_author">Book Author</label>';
-    echo '<input type="text" id="book_author" name="book_author" value="' . esc_attr($book_author) . '">';
+    echo '<input type="text" id="book_author" name="book_author" value="'. esc_attr($book_author). '">';
     echo '</div>'; // End of book-field
 
     echo '</div>'; // End of book-fields
@@ -125,10 +141,16 @@ function custom_book_metabox_callback($post)
 }
 
 // Save Metabox Data
+/**
+ * Save data from Book Details Meta Box
+ *
+ * @param int $post_id Post ID
+ * @return void
+ */
 function custom_book_metabox_save($post_id)
 {
     // Check nonce
-    if (!isset($_POST['custom_book_metabox_nonce']) || !wp_verify_nonce($_POST['custom_book_metabox_nonce'], basename(__FILE__))) {
+    if (!isset($_POST['custom_book_metabox_nonce']) ||!wp_verify_nonce($_POST['custom_book_metabox_nonce'], basename(__FILE__))) {
         return $post_id;
     }
 
@@ -155,6 +177,11 @@ function custom_book_metabox_save($post_id)
 add_action('save_post', 'custom_book_metabox_save');
 
 // Enqueue Stylesheet
+/**
+ * Enqueue custom stylesheet for Book Details Meta Box
+ *
+ * @return void
+ */
 function custom_book_enqueue_styles()
 {
     // Enqueue your stylesheet
