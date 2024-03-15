@@ -1,16 +1,3 @@
-<?php
-
-/**
- * The header for our theme
- *
- * This is the template that displays all of the <head> section and everything up until <div id="content">
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package CodzBee_Test
- */
-
-?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
 
@@ -30,36 +17,56 @@
 	<div id="page" class="site">
 		<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'codzbee-test'); ?></a>
 
-		<header id="masthead" class="site-header">
-			<div class="site-branding">
-				<?php
-				the_custom_logo();
-				if (is_front_page() && is_home()) :
-				?>
-					<h1 class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></h1>
-				<?php
-				else :
-				?>
-					<p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></p>
-				<?php
-				endif;
-				$codzbee_test_description = get_bloginfo('description', 'display');
-				if ($codzbee_test_description || is_customize_preview()) :
-				?>
-					<p class="site-description"><?php echo $codzbee_test_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
-												?></p>
-				<?php endif; ?>
-			</div><!-- .site-branding -->
+		<header id="masthead" class="site-header bg-dark py-3">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-3">
+						<?php
+						the_custom_logo();
+						if (is_front_page() && is_home()) :
+						?>
+							<h1 class="site-title text-light"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></h1>
+						<?php
+						else :
+						?>
+							<p class="site-title text-light"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></p>
+						<?php
+						endif;
+						$codzbee_test_description = get_bloginfo('description', 'display');
+						if ($codzbee_test_description || is_customize_preview()) :
+						?>
+							<p class="site-description text-light"><?php echo $codzbee_test_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+																		?></p>
+						<?php endif; ?>
+					</div><!-- .col-lg-3 -->
 
-			<nav id="site-navigation" class="main-navigation">
-				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e('Primary Menu', 'codzbee-test'); ?></button>
-				<?php
-				wp_nav_menu(
-					array(
-						'theme_location' => 'menu-1',
-						'menu_id'        => 'primary-menu',
-					)
-				);
-				?>
-			</nav><!-- #site-navigation -->
+					<div class="col-lg-9">
+						<nav id="site-navigation" class="main-navigation navbar navbar-expand-lg navbar-dark">
+							<div class="container-fluid">
+								<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+									<span class="navbar-toggler-icon"></span>
+								</button>
+								<?php
+								wp_nav_menu(
+									array(
+										'theme_location' => 'menu-1',
+										'menu_id'        => 'primary-menu',
+										'container'      => 'div',
+										'container_id'   => 'navbarNav',
+										'container_class'=> 'collapse navbar-collapse',
+										'menu_class'     => 'navbar-nav',
+										'fallback_cb'    => '__return_false',
+										'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+										'depth'          => 2,
+										'walker'         => new WP_Bootstrap_Navwalker(),
+									)
+								);
+								?>
+							</div><!-- .container-fluid -->
+						</nav><!-- #site-navigation -->
+					</div><!-- .col-lg-9 -->
+				</div><!-- .row -->
+			</div><!-- .container -->
 		</header><!-- #masthead -->
+
+		<div id="content" class="site-content">
