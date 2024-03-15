@@ -1,0 +1,24 @@
+/* CSS for book fields */
+.book-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.book-field {
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+.book-field label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.book-field input[type="text"],
+.book-field input[type="number"],
+.book-field select {
+    width: calc(100% - 20px); 
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
